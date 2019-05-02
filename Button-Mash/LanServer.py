@@ -96,7 +96,7 @@ def broadcast(connection):
         sum += playerScore[player]
     message = ''
     for player in playerScore:
-        message = message + str(playerScore[player]/sum)
+        message = message + str((playerScore[player])*100//sum)
     for clients in list_of_clients:
         if clients != connection:
             try:
