@@ -18,6 +18,9 @@ intro_img = "./images/intro_image.jpg"
 displayHeight = 240
 displayWidth = 320
 
+#Bar positions
+
+
 #initilize the window
 window = pygame.display.set_mode((displayWidth, displayHeight))
 
@@ -42,13 +45,19 @@ def clientsetup():
     Port = int(sys.argv[2])
     server.connect((IP_address, Port))
 
+def winner_screen():
+
 def gameloop()
     while True:
         socket_list = [sys.stdin, server]
-        read_sockets, write_sockets, error_socket = select.slect(sockets_list, [], [])
+        read_sockets, write_sockets, error_socket = select.select(sockets_list, [], [])
         for socket in read_soket:
             if socket == server:
                 message = socket.recv(2048)
+                if message == b"gameover":
+                    winner_screen()
+                #"p1 p2 p3 p4"
+                scores = message.split(" ")
                 updateboard()
 
 def gameintro():
