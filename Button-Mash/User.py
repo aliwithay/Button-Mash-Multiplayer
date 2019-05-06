@@ -37,7 +37,7 @@ def buttonpress():
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(36, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(36,GPIO.RISING,callback=buttonpress)
+GPIO.add_event_detect(36, GPIO.RISING, callback=buttonpress)
 
 
 def text_objects(text, font):
@@ -109,11 +109,12 @@ def gameintro():
 #Check for keypress.
 #   If start button for "ready" pressed, call game loop
 #   If select button pressed, exit. [optional]
-    window.blit(intro_img, [0,0])
+    pygame.blit(intro_img, [0,0])
     clientsetup()
     gameloop()
 
 clock = pygame.time.Clock()
 username = 'Jackson'
 p = 0
+intro_img = pygame.image.load('intro_img.jpg')
 gameintro()
