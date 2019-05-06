@@ -109,12 +109,12 @@ def gameintro():
 #Check for keypress.
 #   If start button for "ready" pressed, call game loop
 #   If select button pressed, exit. [optional]
-    pygame.blit(intro_img, [0,0])
+    window.blit(intro_img, [0,0])
     clientsetup()
     gameloop()
 
 clock = pygame.time.Clock()
 username = 'Jackson'
 p = 0
-intro_img = pygame.image.load('intro_img.jpg')
+intro_img = pygame.image.load('images/intro_img.png')
 gameintro()
