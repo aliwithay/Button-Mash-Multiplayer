@@ -116,5 +116,5 @@ def gameintro():
 clock = pygame.time.Clock()
 username = 'Jackson'
 p = 0
-intro_img = pygame.image.load('images/intro_img.png')
+intro_img = pygame.image.load('./images/intro_img.png')
 gameintro()
