@@ -4,9 +4,11 @@ import sys
 import socket
 import select
 import time
+import os
 
+os.putenv('SDL_VIDEODRIVER', 'fbcon')
 pygame.init()
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAK)
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 #Colors & images
 red = (255, 0, 0)
