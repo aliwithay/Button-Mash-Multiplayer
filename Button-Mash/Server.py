@@ -75,9 +75,9 @@ def clientthread(conn, addr):
 
 
 def countdown():
-    socket.sendall(b'ready')
+    server.sendall(b'ready')
     time.sleep(2)
-    socket.sendall(b'GO!')
+    server.sendall(b'GO!')
 
 
 def gameover(connection):
