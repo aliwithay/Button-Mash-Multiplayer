@@ -36,8 +36,8 @@ def buttonpress():
 #A:16 Start:20 Select:21
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(16,GPIO.RISING,callback=buttonpress)
+GPIO.setup(36, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.add_event_detect(36,GPIO.RISING,callback=buttonpress)
 
 
 def text_objects(text, font):
