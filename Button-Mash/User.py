@@ -6,7 +6,7 @@ import select
 import time
 import os
 
-os.putenv('SDL_VIDEODRIVER', 'fbcon')
+#os.putenv('SDL_VIDEODRIVER', 'fbcon')
 pygame.init()
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -110,6 +110,7 @@ def gameintro():
 #   If start button for "ready" pressed, call game loop
 #   If select button pressed, exit. [optional]
     window.blit(intro_img, [0,0])
+    pygame.display.flip()
     clientsetup()
     gameloop()
 
