@@ -94,7 +94,9 @@ def gameloop():
         for socket in read_sockets:
             if socket == server:
                 message = socket.recv(2048)
+                print("message received = " + str(message))
                 if message == b"gameover":
+
                     winner_screen()
                 #"p1 p2 p3 p4"
                 elif message == b'ready':
