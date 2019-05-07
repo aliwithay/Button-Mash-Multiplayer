@@ -31,6 +31,7 @@ def button_press(channel):
 #Send signal to server.
     print("Button Has been pressed")
     server.send(b's')
+    print('we sent that shit')
 
 #Setup GPIO buttons
 #A:16 Start:20 Select:21
