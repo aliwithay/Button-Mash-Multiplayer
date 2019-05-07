@@ -26,7 +26,7 @@ displayWidth = 320
 pygame.init()
 #initilize the window
 
-window = pygame.display.set_mode((displayWidth, displayHeight))
+window = pygame.display.set_mode((displayWidth, displayHeight), pygame.FULLSCREEN)
 pygame.display.set_caption('Button Mash')
 
 clock = pygame.time.Clock()
