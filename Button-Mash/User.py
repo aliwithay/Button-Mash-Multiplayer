@@ -29,6 +29,7 @@ window = pygame.display.set_mode((displayWidth, displayHeight))
 
 def buttonpress():
 #Send signal to server.
+    print("Button Has been pressed")
     message = b"s"
     server.send(message)
 
@@ -99,8 +100,8 @@ def gameloop():
                 #"p1 p2 p3 p4"
                 elif message == b'ready':
                     message_display(message, 160, 20)
-                elif message == b'GO!':
-                    message_display(message, 160, 40)
+                    time.sleep(2)
+                    message_display('GO!', 160, 40)
                 else:
                     updateboard(message)
 
