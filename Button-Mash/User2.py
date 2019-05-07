@@ -76,7 +76,7 @@ def updateboard(scores):
     arr = scores.split()
     print(arr)
     for i in range(len(arr)):
-        pygame.draw.rect(window, colours[i], [(128*i)+64, 200-(arr[i]*2), 64, arr[i]*2])
+        pygame.draw.rect(window, colours[i], [(128*i)+64, (int(arr[i])*10), 64, 200 - (int(arr[i])*10)])
 
 
 
