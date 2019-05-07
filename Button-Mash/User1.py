@@ -76,7 +76,7 @@ def updateboard(scores):
     print(arr)
     for i in range(len(arr)):
         print(int(arr[i]))
-        pygame.draw.rect(window, colours[i], [(128*i)+64, (int(arr[i])*10), 64, 200 - (int(arr[i])*10)])
+        pygame.draw.rect(window, colours[i], [(128*i)+64, (200 - (int(arr[i])*10)), 64, (int(arr[i])*10)])
     pygame.display.flip()
 
 def gameloop():
