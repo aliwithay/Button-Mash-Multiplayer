@@ -36,11 +36,6 @@ intro_img = pygame.image.load('images/intro_image.png')
 window.blit(intro_img, [0, 0])
 pygame.display.flip()
 
-while True:
-    print("waiting")
-    time.sleep(3)
-
-
 time.sleep(10)
 pygame.quit()
 
