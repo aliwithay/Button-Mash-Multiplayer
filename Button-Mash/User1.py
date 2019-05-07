@@ -29,9 +29,7 @@ window = pygame.display.set_mode((displayWidth, displayHeight), pygame.FULLSCREE
 
 def button_press(channel):
 #Send signal to server.
-    print("Button Has been pressed")
     server.send(b's')
-    print('we sent that shit')
 
 #Setup GPIO buttons
 #A:16 Start:20 Select:21
@@ -100,7 +98,7 @@ def gameloop():
                 print("message received = " + str(message))
                 if message == b"gameover":
 
-                    winner_screen()
+                    winner_screen(write_sockets)
                 #"p1 p2 p3 p4"
                 elif message == b'ready':
                     message_display(message, 160, 20)

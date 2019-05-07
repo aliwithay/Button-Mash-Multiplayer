@@ -29,9 +29,7 @@ window = pygame.display.set_mode((displayWidth, displayHeight), pygame.FULLSCREE
 
 def button_press(channel):
 #Send signal to server.
-    print("Button Has been pressed")
     server.send(b's')
-    print('we sent that bitch')
 
 #Setup GPIO buttons
 #A:16 Start:20 Select:21
@@ -68,6 +66,7 @@ def winner_screen(read_sockets):
         if socket == server:
             message = socket.recv(2048)
     updateboard(message)
+    time.sleep(10)
     pygame.quit()
 
 
@@ -94,13 +93,12 @@ def gameloop():
     while True:
         socket_list = [sys.stdin, server]
         read_sockets, write_sockets, error_socket = select.select(socket_list, [], [])
-        for socket in read_sockets:
-            if socket == server:
-                message = socket.recv(2048)
+        for s in read_sockets:
+            if s == server:
+                message = s.recv(2048)
                 print("message received = " + str(message))
                 if message == b"gameover":
-
-                    winner_screen()
+                    winner_screen(read_sockets)
                 #"p1 p2 p3 p4"
                 elif message == b'ready':
                     message_display(message, 160, 20)
@@ -124,3 +122,4 @@ username = 'James'
 p = 1
 intro_img = pygame.image.load('images/intro_image.png')
 gameintro()
+
