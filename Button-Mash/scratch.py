@@ -23,7 +23,7 @@ pygame.display.set_caption('Button Mash')
 clock = pygame.time.Clock()
 
 
-intro_img = pygame.image.load('intro_image.png')
+intro_img = pygame.image.load('images\intro_image.png')
 window.blit(intro_img, [0, 0])
 pygame.display.flip()
 
