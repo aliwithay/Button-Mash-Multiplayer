@@ -2,11 +2,14 @@ import pygame
 import time
 import RPi.GPIO as GPIO
 
-
+def button_callback(channel):
+    print("A Button was pressed")
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(36, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.add_event_detect(36,GPIO.RISING,callback=button_callback) # Setup event on pin 10 rising edge
+
 
 
 #Colors & images
@@ -34,8 +37,8 @@ window.blit(intro_img, [0, 0])
 pygame.display.flip()
 
 while True:
-    if GPIO.input(36) == GPIO.HIGH:
-        print('A BUTTON WAS PRESSED')
+    print("waiting")
+    time.sleep(3)
 
 
 time.sleep(10)
