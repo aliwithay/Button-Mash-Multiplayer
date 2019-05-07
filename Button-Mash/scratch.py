@@ -34,7 +34,7 @@ window.blit(intro_img, [0, 0])
 pygame.display.flip()
 
 while True:
-    if GPIO.input(36) == HIGH:
+    if GPIO.input(36) == GPIO.HIGH:
         print('A BUTTON WAS PRESSED')
 
 
