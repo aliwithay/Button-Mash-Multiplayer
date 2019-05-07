@@ -30,8 +30,7 @@ window = pygame.display.set_mode((displayWidth, displayHeight))
 def button_press(channel):
 #Send signal to server.
     print("Button Has been pressed")
-    message = b"s"
-    server.send(message)
+    server.send(b's')
 
 #Setup GPIO buttons
 #A:16 Start:20 Select:21
