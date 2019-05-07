@@ -42,60 +42,37 @@ playerScore = {}
 
 def clientthread(conn, addr):
     # sends a message to the client whose user object is conn
+    print("IM A USER")
+    print(conn)
+    print(addr)
+    countdown(conn)
     while True:
-        if(len(list_of_clients)==1):
-            print('starting countdown')
-            countdown(conn)
-            timeout = time.time() + 10
-            print('finished countdown')
-            while True:
-                if time.time() < timeout:
-                    try:
-                        message = conn.recv(2048)
-                        if message:
-
-                            """prints the message and address of the 
-                            user who just sent the message on the server 
-                            terminal"""
-                            print("<" + addr[0] + "> " + message)
-
-                            playerScore[conn] += 1
-                            print('we incremented the count!')
-                            broadcast(conn)
-
-                        else:
-                            """message may have no content if the connection 
-                            is broken, in this case we remove the connection"""
-                            remove(conn)
-
-                    except:
-                        print("no message detected")
-                else:
-                    print('gameover')
-                    gameover(conn)
-        else:
-            print("Not enough players")
-            for val in playerScore:
-                print(val)
-            time.sleep(5)
-
-
+        try:
+            message = conn.recv(2048)
+            if message:
+                #do a whole bunch of shit
+                print("<" + addr[0] + ">" + str(message))
+                playerScore[conn] += 1
+                print('we incremented the count')
+                broadcast(conn)
+                print(type(playerScore[conn]))
+                if playerScore[conn] > 20:
+                    gameover()
+        except:
+            continue
 
 def countdown(connection):
     print('figuring out countdown')
 
 
-def gameover(connection):
+def gameover():
+    print("GAME OVER")
     for clients in list_of_clients:
-        if clients != connection:
-            try:
-                clients.send(b'gameover')
-            except:
-                clients.close()
+        try:
+            clients.send(b'gameover')
+        except:
+            continue
 
-                # if the link is broken, we remove the client
-                remove(clients)
-    broadcast(connection)
 
 
 """Using the below function, we broadcast the message to all 
@@ -104,24 +81,18 @@ the message """
 
 
 def broadcast(connection):
-    sum = 1
-    for player in playerScore:
-        sum += playerScore[player]
     message = ''
     for player in playerScore:
-        message = message + str((playerScore[player])*100//sum) + ' '
+        message = message + str((playerScore[player])) + '  '
+    print(message)
     for clients in list_of_clients:
-        if clients != connection:
-            try:
-                clients.send(message)
-            except:
-                clients.close()
-
-                # if the link is broken, we remove the client
-                remove(clients)
+        try:
+            clients.send(message.encode())
+        except:
+            continue
 
 
-"""The following function simply removes the object 
+"""The following function simply s the object 
 from the list that was created at the beginning of  
 the program"""
 
