@@ -43,11 +43,13 @@ playerScore = {}
 def clientthread(conn, addr):
     # sends a message to the client whose user object is conn
     while True:
-        if(len(list_of_clients)==2):
-            countdown()
+        if(len(list_of_clients)==1):
+            print('starting countdown')
+            countdown(conn)
             timeout = time.time() + 10
+            print('finished countdown')
             while True:
-                if time.time() > timeout:
+                if time.time() < timeout:
                     try:
                         message = conn.recv(2048)
                         if message:
@@ -58,6 +60,7 @@ def clientthread(conn, addr):
                             print("<" + addr[0] + "> " + message)
 
                             playerScore[conn] += 1
+                            print('we incremented the count!')
                             broadcast(conn)
 
                         else:
@@ -66,18 +69,20 @@ def clientthread(conn, addr):
                             remove(conn)
 
                     except:
-                        continue
+                        print("no message detected")
                 else:
+                    print('gameover')
                     gameover(conn)
         else:
             print("Not enough players")
+            for val in playerScore:
+                print(val)
+            time.sleep(5)
 
 
 
-def countdown():
-    server.sendall(b'ready')
-    time.sleep(2)
-    server.sendall(b'GO!')
+def countdown(connection):
+    print('figuring out countdown')
 
 
 def gameover(connection):
@@ -99,7 +104,7 @@ the message """
 
 
 def broadcast(connection):
-    sum = 0
+    sum = 1
     for player in playerScore:
         sum += playerScore[player]
     message = ''

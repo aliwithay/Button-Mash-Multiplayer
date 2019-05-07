@@ -27,18 +27,18 @@ displayWidth = 320
 #initilize the window
 window = pygame.display.set_mode((displayWidth, displayHeight))
 
-def buttonpress():
+def button_press():
 #Send signal to server.
     print("Button Has been pressed")
-    message = b"s"
-    server.send(message)
+    #message = b"s"
+    #server.send(message)
 
 #Setup GPIO buttons
 #A:16 Start:20 Select:21
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(36, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(36, GPIO.RISING, callback=buttonpress)
+GPIO.add_event_detect(36, GPIO.RISING, callback=button_press)
 
 
 def text_objects(text, font):
@@ -86,7 +86,7 @@ def gameloop():
     pygame.draw.line(window, red, (0, 100), (320, 100))
     pygame.draw.line(window, red, (0, 150), (320, 150))
     pygame.draw.line(window, red, (0, 200), (320, 200))
-    message_display(username, 96+(p*64), 220)
+    message_display(username, 96+(p*128), 220)
     pygame.display.flip()
     clock.tick(60)
     while True:
